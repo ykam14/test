@@ -1,8 +1,9 @@
 version: 2
 jobs:
-  branches:
-    only:
-      - circle
+  filters:
+    branches:
+      only:
+        - circle
   build:
     docker:
       - image: circleci/ruby:2.4.1
