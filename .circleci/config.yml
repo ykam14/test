@@ -1,12 +1,12 @@
 version: 2
 jobs:
-  filters:
-    branches:
-      only:
-        - circle
   build:
     docker:
       - image: circleci/ruby:2.4.1
     steps:
       - checkout
       - run: echo "A first hello"
+    filters:
+      branches:
+        only:
+          - circle
