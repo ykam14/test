@@ -9,15 +9,15 @@ jobs:
     - run:
         name: test
         command: |
-          touch ./test.apk 
-          $APK_NAME=./test.apk
+          touch ./test.txt
+          APK_NAME=./test.txt
     - run:
         name: test
         command: COMMENT_MESSAGE=`git log -1 --pretty=format:"%s"` 
     - run:
         name: Set Properties
         command: |
-          curl -F "token=$DUMMY_TOKEN" -F "file=@APK_NAME" -F "message=$COMMNET_MESSAGE" https://deploygate.com/api/users/$DUMMY_USER_NAME/apps
+          curl -F "token=$DUMMY_TOKEN" -F "file=@$APK_NAME" -F "message=$COMMNET_MESSAGE" https://deploygate.com/api/users/$DUMMY_USER_NAME/apps
 
 workflows:
   version: 2
