@@ -20,8 +20,13 @@ jobs:
         command:
           dg --version
     - run:
-        name: test
-        command: ls ~/.gradle/*.properties
+        name: login
+        command: dg login
+
+    - run:
+        name: logout
+        command: dg logout
+
 workflows:
   version: 2
   workflow:
