@@ -2,10 +2,14 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/android:api-28-ndk-r17b
     steps:
       - checkout
-      - run: echo "A first hello"
+    - run:
+        name: Test
+        command: |
+          mkdir ~/.gradle
+          echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
     filters:
       branches:
         only:
