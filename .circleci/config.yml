@@ -11,6 +11,14 @@ jobs:
         command: |
           mkdir ~/.gradle
           echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
+    - run:
+        name: Install DeployGate Command Line Tool
+        command:
+          curl -sSL https://deploygate.com/cli/install | bash
+    - run:
+        name: Confirm
+        command:
+          dg --version
 workflows:
   version: 2
   workflow:
