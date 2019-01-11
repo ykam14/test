@@ -9,21 +9,15 @@ jobs:
     - run:
         name: test
         command: |
-          a=`git log -1 --pretty=format:"%s"` 
-          echo $a
+          touch ./test.apk 
+          $APK_NAME=./test.apk
+    - run:
+        name: test
+        command: COMMENT_MESSAGE=`git log -1 --pretty=format:"%s"` 
     - run:
         name: Set Properties
         command: |
-          mkdir ~/.gradle
-          echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
-    - run:
-        name: Install DeployGate Command Line Tool
-        command:
-          curl -sSL https://deploygate.com/cli/install | bash
-    - run:
-        name: Confirm
-        command:
-          dg --version
+          curl -F "token=$DUMMY_TOKEN" -F "file=@APK_NAME" -F "message=$COMMNET_MESSAGE" https://deploygate.com/api/users/$DUMMY_USER_NAME/apps
 
 workflows:
   version: 2
