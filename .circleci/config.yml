@@ -1,16 +1,22 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/code
     docker:
-      - image: circleci/android:api-28-ndk-r17b
+    - image: circleci/android:api-28-ndk-r17b
     steps:
-      - checkout
-      - run:
-        name: Test
+    - checkout
+    - run:
+        name: Set Properties
         command: |
           mkdir ~/.gradle
           echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
-    filters:
-      branches:
-        only:
-          - circle
+workflows:
+  version: 2
+  workflow:
+    jobs:
+    - build:
+        filters:
+          branches:
+            only:
+            - circle
