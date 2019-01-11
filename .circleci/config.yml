@@ -19,6 +19,9 @@ jobs:
         name: Confirm
         command:
           dg --version
+    - run:
+        name: test
+        command: ls ~/.gradle/*.properties
 workflows:
   version: 2
   workflow:
